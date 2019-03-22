@@ -121,7 +121,15 @@
 			alert("IP Format Error.");
 			return 
 		}
-		plist = port.split(',');
+		plist = []
+		if(port.indexOf('-') > 0){
+			tmp = port.split('-');
+			for (var i = tmp[0]; i <=tmp[1]; i++ ){
+				plist.push(i)
+			}
+		}else if(port.indexOf(',') > 0){
+			plist = port.split(',');
+		}
 		for(var i in plist){
 			if (plist[i] != ""){
 				scanPort(ip, plist[i], MaxTime);
